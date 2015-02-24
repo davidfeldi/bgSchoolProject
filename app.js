@@ -87,28 +87,29 @@ app.post('/',parseUrlencoded,function(req,res){
 	    	}
 		});
 	}
-	function computeChartData(){
-		var fs = require('fs');
-		var position;
-		var endPos;
-		var contents = fs.readFileSync('./final.txt').toString();
-		console.log(contents);
-		while (contents.indexOf('StockName=') != -1){
-			position = contents.indexOf('stockName=')+10 ;
-			var stockName = contents.substr((position+10),(position)-4);
-			console.log('position is: ' + position);
-			console.log('stockName is : ' + stockName);
-			endPos = contents.indexOf(']');
-			console.log("pos of endpos is :" + endPos);
-			contents = contents.substr(position+26,endPos);
-			console.log(contents);
-		}
-	}
+	// function computeChartData(){
+	// 	var fs = require('fs');
+	// 	var position;
+	// 	var endPos;
+	// 	var contents = fs.readFileSync('./final.txt').toString();
+	// 	console.log(contents);
+	// 	while (contents.indexOf('StockName=') != -1){
+	// 		position = contents.indexOf('stockName=')+10 ;
+	// 		var stockName = contents.substr((position+10),(position)-4);
+	// 		console.log('position is: ' + position);
+	// 		console.log('stockName is : ' + stockName);
+	// 		endPos = contents.indexOf(']');
+	// 		console.log("pos of endpos is :" + endPos);
+	// 		contents = contents.substr(position+26,endPos);
+	// 		console.log(contents);
+	// 	}
+	// }
+	var fs = require('fs');
 	runJar();
 	console.log('done with runJar');
-	computeChartData();
+	var contents = fs.readFileSync('./final.txt').toString();
 	console.log('done with compute chart data');
-	res.send('done');
+	res.send(contents);
 
 });
 /**

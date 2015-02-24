@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js"></script>
+
+<script src="charts.js"></script>
+
+<script type="text/javascript"> 
+    $(function() {
+        var output = [];
+        if (typeof(Storage) != "undefined") {
+            //document.getElementById("result").innerHTML = localStorage.getItem("output");
+            output = localStorage.getItem("output");
+        } else {
+            document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+        }
+
+    }): <!--// close dom ready -->
+</script>
+
+
+
+
+
+<style type="text/css">
+    body { font-family: Arial, sans-serif; font-size: 10pt; }
+    table { border-collapse: collapse; border: 1px solid gray; }
+    td { border: 1px solid gray; }
+</style>
+
+</head>
+
+<body>
+
+<table cellpadding=1 style='margin-left:0pt;margin-right:0pt;margin-top:0pt;margin-bottom:0pt'>
+
+    <tr>
+        <td>StockName</td>
+        <td>
+            <span class="sparkline"
+                Open='14.17,14.17,14.10,14.01,15.17,13.17,14.17,13.23,12.17,12.17,12.00,12.00,12.00'
+                High='06.00,06.10,06.20,07.00,07.50,07.70,08.00,07.20,07.10,06.50,05.34,05.21,05.20'
+                Low='09.60,09.77,09.57,09.67,09.77,09.77,11.77,09.77,09.98,10.20,10.30,10.34,10.45'
+                Close='01.2,0.2,01.2,02.5,05.4,03.4,07.5,04.5,09.5,02.2,06.6,09.9,15.0'
+                sparkChartRangeMin='05.20' sparkChartRangeMax='15.17' ></span></td>
+    </tr>
+
+    <tr>
+        <td>StockName</td>
+        <td>
+            <span class="sparkline"
+                Open='57.00,56.10,56.20,56.33,54.00,53.00,52.10,54.23,54.47,56.65,57.00,56.59,52.00'
+                High='51.91,51.10,51.02,51.03,51.04,51.05,51.16,51.05,51.23,52.10,52.30,51.20,51.13'
+                Low='55.55,54.41,54.22,53.67,52.19,51.10,53.49,53.49,53.55,54.10,54.11,54.23,54.10'
+                sparkChartRangeMin='51.00' sparkChartRangeMax='57.00' ></span></td>
+    </tr>
+
+</table>
+</body>
+
+</html>
