@@ -16,22 +16,19 @@ $(document).ready(function(){
 	  	//showValues();
 	    var $this = $(this); // `this` refers to the current form element
 	    console.log('testing the values from index.html');
-	    var arrData=$(this).serialize().toString().split(',', "'");
-	    ////////////
-	    		for (var x in arrData){
-	    			console.log('arrData element is ' + arrData[x]);
-	    		}
-	    		//pushing all request params into array
-				var paramArr = [];
-				for(var x in arrData){
-				  paramArr.push(arrData[x]);
-				}
-				//getting the Features parameters into a diff array
-				var param3Arr = [];
-				param3Arr = paramArr[3].toString().split(" ") ;
-				console.log('size of param3Arr is : ' + param3Arr.length);
-				
-	    ////////////
+	    //////
+	    var counter = 0; //number of features to loop on 
+	    var form = [];
+	    form = $this.serializeArray();
+	    for (var x in form) {
+	    	if ((form[x].value === 'Open') || (form[x].value === 'High') || (form[x].value === 'Close') || (form[x].value === 'Low')){
+	    		//console.log('evar is : ' + form[x].value);
+	    		counter = counter + 1; 
+	    	}
+	    }
+	    localStorage.setItem("numFeatures",counter);
+	    //console.log('counter is '  + counter);
+	    //////
 	    var runme = $.post(
 	        '/' , //  the URL to sent the post to
 	        $this.serialize(),    // Serializes form data in standard format
