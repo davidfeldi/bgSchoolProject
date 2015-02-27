@@ -118,7 +118,7 @@ var closeVals= [];
                     endPos = entry.indexOf(']');
                     console.log("pos of endpos is :" + endPos);
                     data = entry.substr(position+26,endPos);
-                    console.log('--->data to make graph from is : ' + data); 
+                    //console.log('--->data to make graph from is : ' + data); 
                     //lines.destroy(entry);
                     var sum = 0;
                     console.log('---> data type is : ' + typeof data);
@@ -128,19 +128,24 @@ var closeVals= [];
                     for (a in temp ) {
                         temp[a] = parseFloat(temp[a]); //
                     }
+                    for (a in temp ) {
+                        console.log('evar in datatemp is ' + a + ' : ' + temp[a]); //
+                    }
                     console.log('---> temp type is : ' + typeof temp);
                     console.log('---> temp arr is length ' + temp.length);
-                    for (var i=0 ; i<temp.length ; i++) {
-                        for (var j=0 ; j<numOfFeatures ; j++){
+                    for (var i=0 ; i< temp.length ; i++) {
+                        for (var j=0 ; j < numOfFeatures ; j++){
+                            sum = sum + temp[i];
                             i++;
-                            sum = sum + temp[i] ;
                         }
                         avgArr.push(sum/numOfFeatures);
                         sum = 0;
+                        i--;
                     }
+                    avgArr.pop();
                     console.log('stock : ' + stockName + 'avg is : ' );
                     for (var x in avgArr) {
-                        console.log ('====> evar of avgArr is  : ' + avgArr[x]);
+                        console.log ('====> evar of avgArr is  '+ x + ': ' + avgArr[x]);
                     }
                     avgArr = [];
                     temp = [];
