@@ -20,18 +20,27 @@ $(document).ready(function(){
 	    var counter = 0; //number of features to loop on 
 	    var form = [];
 	    form = $this.serializeArray();
-        for (var i=3;i<form.length;i++){
-            console.log('checks are: ' + form[i].value );
-
-        }
+        //for (var i=3;i<form.length;i++){
+        //    console.log('checks are: ' + form[i].value );
+        //}
 	    for (var x in form) {
+            console.log('form name is : '+ form[x].name);
+            if (form[x].name !== 'check' ){
+                if (form[x].value == ''){
+                    alert('yo yo ' + form[x].name + ' cannot be empty .. retry..');
+                    var flag="reload";
+                }
+            }
 	    	if ((form[x].value === 'Open') || (form[x].value === 'High') || (form[x].value === 'Close') || (form[x].value === 'Low')){
 	    		//console.log('evar is : ' + form[x].value);
 	    		counter = counter + 1; 
 	    	}
 	    }
-        if ( counter === 0 ) {
-            alert('please select 1 feature at least...');
+
+        if (( counter === 0 ) || (flag == "reload")) {
+            if ( counter==0 ) {
+                alert('please select 1 feature at least...');
+            }
             location.reload();
         }else{
             localStorage.setItem("numFeatures",counter);

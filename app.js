@@ -88,7 +88,7 @@ app.post('/',parseUrlencoded,function(req,res){
     console.log ('Features final arr  is now ' + featuresArr);
 
     paramArr.pop(); //taking the last param out of the arr...
-	
+    var numClusters = paramArr.pop();
 	var paramList='';
 	for (var x in paramArr) {
 		paramList = paramList + paramArr[x] + ' ';
@@ -96,6 +96,7 @@ app.post('/',parseUrlencoded,function(req,res){
 	for (var x in featuresArr) {
 		paramList = paramList + featuresArr[x] + ' ';
 	}
+    paramList = paramList + numClusters;
 	console.log('paramlist is now ' + paramList);
 	/**
 	 * [runJar run the jar from commandline]
