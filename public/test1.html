@@ -16,66 +16,66 @@ var closeVals= [];
         if (typeof(Storage) != "undefined") {
             //document.getElementById("result").innerHTML = localStorage.getItem("output");
             var output = localStorage.getItem("output");
-            function makeSparkline()
+            function makeSparkline(avgArr)
             {
-                $('.sparkline').sparkline(openVals,
+              //   $('.sparkline').sparkline(openVals,
+              //   {
+              //       enableTagOptions: true,
+
+              //       type: 'bar',
+              //       tagValuesAttribute: 'Open',
+              //       chartRangeMin: 'sparkChartRangeMin',
+              //       chartRangeMax: 'sparkChartRangeMax',
+              //       height: '45px',
+              //       barColor: '#C8C8C8',
+              //       barWidth: 10,
+              //       barSpacing: 0,
+              //       disableInteraction: false
+              //   }
+              // );
+
+              //   $('.sparkline').sparkline(highVals,
+              //   {
+              //       composite: true,
+
+              //       enableTagOptions: true,
+
+              //       type: 'bar',
+              //       tagValuesAttribute: 'High',
+              //       chartRangeMin: 'sparkChartRangeMin',
+              //       chartRangeMax: 'sparkChartRangeMax',
+              //       height: '45px',
+              //       barColor: '#00FF00',
+              //       barWidth: 10,
+              //       barSpacing: 0,
+              //       disableInteraction: false
+              //   }
+              // );
+
+              //   $('.sparkline').sparkline(lowVals,
+              //   {
+              //       composite: true,
+
+              //       enableTagOptions: true,
+
+              //       type: 'line',
+              //       tagValuesAttribute: 'Low',
+              //       chartRangeMin: 'sparkChartRangeMin',
+              //       chartRangeMax: 'sparkChartRangeMax',
+              //       height: '45px',
+              //       lineWidth: 2,
+              //       lineColor: '#007fc0',
+              //       fillColor: false,
+              //       spotRadius: 2,
+              //       spotColor: false,
+              //       minSpotColor: '#ff0000',
+              //       maxSpotColor: '#0000ff',
+              //       disableInteraction: false
+              //   }
+              // );
+               $('.sparkline').sparkline(avgArr,
                 {
-                    enableTagOptions: true,
-
-                    type: 'bar',
-                    tagValuesAttribute: 'Open',
-                    chartRangeMin: 'sparkChartRangeMin',
-                    chartRangeMax: 'sparkChartRangeMax',
-                    height: '45px',
-                    barColor: '#C8C8C8',
-                    barWidth: 10,
-                    barSpacing: 0,
-                    disableInteraction: false
-                }
-              );
-
-                $('.sparkline').sparkline(highVals,
-                {
-                    composite: true,
-
-                    enableTagOptions: true,
-
-                    type: 'bar',
-                    tagValuesAttribute: 'High',
-                    chartRangeMin: 'sparkChartRangeMin',
-                    chartRangeMax: 'sparkChartRangeMax',
-                    height: '45px',
-                    barColor: '#00FF00',
-                    barWidth: 10,
-                    barSpacing: 0,
-                    disableInteraction: false
-                }
-              );
-
-                $('.sparkline').sparkline(lowVals,
-                {
-                    composite: true,
-
-                    enableTagOptions: true,
-
-                    type: 'line',
-                    tagValuesAttribute: 'Low',
-                    chartRangeMin: 'sparkChartRangeMin',
-                    chartRangeMax: 'sparkChartRangeMax',
-                    height: '45px',
-                    lineWidth: 2,
-                    lineColor: '#007fc0',
-                    fillColor: false,
-                    spotRadius: 2,
-                    spotColor: false,
-                    minSpotColor: '#ff0000',
-                    maxSpotColor: '#0000ff',
-                    disableInteraction: false
-                }
-              );
-               $('.sparkline').sparkline(closeVals,
-                {
-                    composite: true,
+                    //composite: true,
 
                     enableTagOptions: true,
 
@@ -97,7 +97,7 @@ var closeVals= [];
 
             };
         function getData(){
-            openVals=[14.17,14.17,14.10,14.01,15.17,13.17,14.17,13.23,12.17,12.17,12.00,12.00,12.00];
+            openVals=[100,100,100,100,100,100,100,100,100,100,100,100];
             highVals=[6.00,6.10,6.20,7.00,7.50,7.70,8.00,7.20,7.10,6.50,5.34,5.21,5.20];
             lowVals=[09.60,09.77,09.57,09.67,09.77,09.77,11.77,09.77,09.98,10.20,10.30,10.34,10.45];
             closeVals=[1.2,0.2,1.2,2.5,5.4,3.4,7.5,4.5,9.5,2.2,6.6,09.9,15.0];
@@ -107,7 +107,7 @@ var closeVals= [];
             var avgArr = [];
             var data;
             var copyArr = output; 
-            lines = output.split("\n");
+            var lines = output.split("\n");
             lines.forEach(function(entry) {
                 if (entry.indexOf('StockName=') != -1) {
                     console.log('line is :: ' + entry);
@@ -147,6 +147,7 @@ var closeVals= [];
                     for (var x in avgArr) {
                         console.log ('====> evar of avgArr is  '+ x + ': ' + avgArr[x]);
                     }
+                    makeSparkline(avgArr);
                     avgArr = [];
                     temp = [];
                     
@@ -159,7 +160,6 @@ var closeVals= [];
 
         } //close function get data;
         getData();
-        makeSparkline();
 
         } else {
             document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
@@ -189,7 +189,7 @@ var closeVals= [];
                 High='Loading..'
                 Low='Loading..'
                 Close='Loading..'
-                sparkChartRangeMin='05.20' sparkChartRangeMax='15.17' ></span></td>
+                sparkChartRangeMin='00.00' sparkChartRangeMax='2.0' ></span></td>
     </tr>
 
 

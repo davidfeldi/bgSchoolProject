@@ -76,7 +76,7 @@ app.post('/',parseUrlencoded,function(req,res){
 	function runJar() {
 		var exec = require('child_process').execSync, child;
 		//var command = 'java koko.jar' + paramList;
-		command = 'ls -l';
+		var command = 'ls -l';
 		console.log('command to run is : ' + command);
 		child = exec(command,
 	  	function (error, stdout, stderr){

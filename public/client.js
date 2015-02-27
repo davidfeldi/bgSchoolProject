@@ -26,19 +26,24 @@ $(document).ready(function(){
 	    		counter = counter + 1; 
 	    	}
 	    }
-	    localStorage.setItem("numFeatures",counter);
-	    //console.log('counter is '  + counter);
-	    //////
-	    var runme = $.post(
-	        '/' , //  the URL to sent the post to
-	        $this.serialize(),    // Serializes form data in standard format
-	        function() {
-	 		});
-	 		runme.done(function(data) {
-	 			localStorage.setItem("output",data);
-		    	alert( "Please check results on the Charts Page" );
-				location.reload();
-		  	});
+        if ( counter === 0 ) {
+            alert('please select 1 feature at least...');
+            location.reload();
+        }else{
+            localStorage.setItem("numFeatures",counter);
+            var runme = $.post(
+                '/' , //  the URL to sent the post to
+                $this.serialize(),    // Serializes form data in standard format
+                function() {
+                });
+            runme.done(function(data) {
+                localStorage.setItem("output",data);
+                alert( "Please check results on the Charts Page" );
+                location.reload();
+            });
+        }
+
+
 		});
 	}
 	/**
