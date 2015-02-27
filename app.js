@@ -47,8 +47,6 @@ app.use(bodyParser());
  */
 app.post('/',parseUrlencoded,function(req,res){
 	console.log(req.body);
-	////////////
-	
 	//pushing all request params into array
 	var paramArr = [];
 	for(var x in req.body){
@@ -58,15 +56,45 @@ app.post('/',parseUrlencoded,function(req,res){
 	var param3Arr = [] ;
 	param3Arr = S(paramArr[3]).parseCSV(',', "'"); 
 	
-	console.log ('param3Arr is now ' + param3Arr);
-	paramArr.pop(); //taking the last param out of the arr...
-	/////////
+    //console.log ('param3Arr is now ' + param3Arr);
+    //console.log('param3Arr size is : ' + param3Arr.length);
+
+    var arrwithOpen = (param3Arr.indexOf("Open") > -1);
+    var arrwithHigh = (param3Arr.indexOf("High") > -1);
+    var arrwithLow = (param3Arr.indexOf("Low") > -1);
+    var arrwithClose = (param3Arr.indexOf("Close") > -1);
+    var featuresArr = [] ; //new arranged arr
+
+    if (arrwithOpen !== true){
+        featuresArr[0] = 'noOpen';
+    } else {
+        featuresArr[0] = 'Open';
+    }
+    if (arrwithHigh !== true){
+        featuresArr[1] = 'noHigh';
+    } else {
+        featuresArr[1] = 'High';
+    }
+    if (arrwithLow !== true){
+        featuresArr[2] = 'noLow';
+    } else {
+        featuresArr[2] = 'Low';
+    }
+    if (arrwithClose !== true){
+        featuresArr[3] = 'noClose';
+    } else {
+        featuresArr[3] = 'Close';
+    }
+    console.log ('Features final arr  is now ' + featuresArr);
+
+    paramArr.pop(); //taking the last param out of the arr...
+	
 	var paramList='';
 	for (var x in paramArr) {
 		paramList = paramList + paramArr[x] + ' ';
 	}
-	for (var x in param3Arr) {
-		paramList = paramList + param3Arr[x] + ' ';
+	for (var x in featuresArr) {
+		paramList = paramList + featuresArr[x] + ' ';
 	}
 	console.log('paramlist is now ' + paramList);
 	/**
@@ -87,23 +115,6 @@ app.post('/',parseUrlencoded,function(req,res){
 	    	}
 		});
 	}
-	// function computeChartData(){
-	// 	var fs = require('fs');
-	// 	var position;
-	// 	var endPos;
-	// 	var contents = fs.readFileSync('./final.txt').toString();
-	// 	console.log(contents);
-	// 	while (contents.indexOf('StockName=') != -1){
-	// 		position = contents.indexOf('stockName=')+10 ;
-	// 		var stockName = contents.substr((position+10),(position)-4);
-	// 		console.log('position is: ' + position);
-	// 		console.log('stockName is : ' + stockName);
-	// 		endPos = contents.indexOf(']');
-	// 		console.log("pos of endpos is :" + endPos);
-	// 		contents = contents.substr(position+26,endPos);
-	// 		console.log(contents);
-	// 	}
-	// }
 	var fs = require('fs');
 	runJar();
 	console.log('done with runJar');

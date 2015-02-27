@@ -15,11 +15,15 @@ $(document).ready(function(){
 		event.preventDefault(); // Prevents the page from refreshing
 	  	//showValues();
 	    var $this = $(this); // `this` refers to the current form element
-	    console.log('testing the values from index.html');
+	    //console.log('testing the values from index.html');
 	    //////
 	    var counter = 0; //number of features to loop on 
 	    var form = [];
 	    form = $this.serializeArray();
+        for (var i=3;i<form.length;i++){
+            console.log('checks are: ' + form[i].value );
+
+        }
 	    for (var x in form) {
 	    	if ((form[x].value === 'Open') || (form[x].value === 'High') || (form[x].value === 'Close') || (form[x].value === 'Low')){
 	    		//console.log('evar is : ' + form[x].value);
