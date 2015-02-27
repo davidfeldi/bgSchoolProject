@@ -105,7 +105,7 @@ app.post('/',parseUrlencoded,function(req,res){
 	function runJar() {
 		var exec = require('child_process').execSync, child;
 		//var command = 'java koko.jar' + paramList;
-		var command = 'ls -l';
+		var command = 'ls -l ;sleep 3;';
 		console.log('command to run is : ' + command);
 		child = exec(command,
 	  	function (error, stdout, stderr){
@@ -119,8 +119,9 @@ app.post('/',parseUrlencoded,function(req,res){
 	var fs = require('fs');
 	runJar();
 	console.log('done with runJar');
+    console.log('starting to read the final result...');
 	var contents = fs.readFileSync('./final.txt').toString();
-	console.log('done with compute chart data');
+    console.log('finished reading the final results...');
 	res.send(contents);
 
 });
